@@ -1,5 +1,5 @@
 const BASE_URL =
-  "https://strangers-things.herokuapp.com/api/2301-ftb-et-web-ft";
+  "localhost:3000";
 
 export const getPosts = async () => {
   try {
