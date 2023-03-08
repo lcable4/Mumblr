@@ -1,5 +1,5 @@
 import  React, { useState, useEffect } from "react";
-import { ReactDOM } from "react-dom";
+import { ReactDOM} from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import { getIndividualPost, DeletePost } from "../api-adapter";
 
@@ -18,6 +18,7 @@ function DummyPosts(props) {
     if (result != undefined) {
         return;
     } else {
+      console.log(result.error);
       console.log(result.error);
     }
   };
