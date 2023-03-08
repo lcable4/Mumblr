@@ -57,13 +57,13 @@ const Main = () => {
         <BrowserRouter>
           <Navbar posts={posts} setPosts={setPosts} />
           <Routes>
-            <Route path="/" element={<DummyPosts posts={posts} />} />
-            {/* <Route path="/login" element={<Login />} /> */}
-            {/* <Route path="/register" element={<Register />} />
+          <Route path="/" element={<DummyPosts posts={posts} />} />
+            <Route path="/login" element={<Login />} />
+           <Route path="/register" element={<Register />} /> 
           <Route path="/newpost" element={<NewPost />} />
           <Route path="/profile" element={<Profile />} />
 
-          <Route path="/SearchBar" element={<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={setPosts}/>} /> */}
+          <Route path="/SearchBar" element={<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={setPosts}/>} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -25,9 +25,9 @@ function DummyPosts(props) {
 
   // const result = post.filter(post => post.title.includes)
 
-  console.log(props.posts, "propsDummyPost");
+  
   const mapPosts = props.posts.map((post) => {
-    console.log(post.tags);
+    
     return (
       <div className="fullPostBox" key={`post map and all post${post.id}`}>
         <div

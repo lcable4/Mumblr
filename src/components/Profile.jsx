@@ -2,9 +2,12 @@ import  React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import { Register } from "./"
+import { getUsers } from "../api-adapter";
 
 
-function Profile(props){
+ function Profile(){
+let users = getUsers();
+console.log(users)
 
 return(
 <div className="profileBoxFull">
