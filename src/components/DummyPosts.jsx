@@ -26,9 +26,9 @@ function DummyPosts(props) {
 
   const mapPosts = props.posts.map((post) => {
     return (
+      <div className="fullPostBox">
       <div className="postInfo" onClick={()=>{displayPost(post)}} key={`${post._id}`}>
         <div>
-          <img className="paperPlaneImg" src="/Untitled_Artwork 23.png" />
 
           <h2 className="postTitle">{post.title}</h2>
           <p>Seller: {post.author.username}</p>
@@ -39,6 +39,7 @@ function DummyPosts(props) {
         </div> : null
   }
         </div>
+      </div>
       </div>
     );
   });
