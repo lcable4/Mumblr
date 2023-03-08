@@ -1,7 +1,8 @@
 import  React, { useState, useEffect } from "react";
 import { ReactDOM} from "react-dom";
 import { Link, useParams } from "react-router-dom";
-import { getIndividualPost, DeletePost } from "../api-adapter";
+import { Tags } from "./"
+import { getIndividualPost, DeletePost, getAllTags } from "../api-adapter";
 
 
 function DummyPosts(props) {
@@ -31,9 +32,11 @@ function DummyPosts(props) {
       <div className="postInfo" onClick={()=>{displayPost(post)}} key={`${post._id}`}>
         <div>
 
-          <h2 className="postTitle">{post.title}</h2>
-          <p>Seller: {post.author.username}</p>
-          <p>Price: {post.price}</p>
+          <p>@{post.author.username}</p>
+          <h2>{post.title}</h2>
+          <p>{post.content}</p>
+          <Tags />
+
         { post.isAuthor ?
         <div>
           <button className="deleteBtn" onClick={()=>{handleClickDelete(post._id)}}>DELETE</button>
@@ -44,7 +47,7 @@ function DummyPosts(props) {
       </div>
     );
   });
-getIndividualPost()
+// getIndividualPost()
 
 // function filterPosts (id) {
 //     for(let i = 0; i <= posts.length; i++)

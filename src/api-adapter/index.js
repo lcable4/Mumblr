@@ -1,13 +1,25 @@
-const BASE_URL =
-  "localhost:3000";
+const BASE_URL = "https://juicebox-n89w.onrender.com/api";
 
 export const getPosts = async () => {
   try {
-    const response = await fetch(BASE_URL, {
+    const response = await fetch(`${BASE_URL}/posts`, {
       method: "GET",
     });
     const result = await response.json();
-    return XPathResult;
+
+    return result.posts;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getAllTags = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/tags`, {
+      method: "GET",
+    });
+    const result = await response.json();
+
+    return result.tags;
   } catch (error) {
     console.log(error);
   }
