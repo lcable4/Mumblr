@@ -7,4 +7,4 @@ export { default as NewPost } from "./NewPost";
 export { default as MessageSeller } from "./MessageSeller";
 export { default as Profile } from "./Profile";
 export { default as SearchBar } from "./SearchBar";
-export { default as Tags } from "./Tags";
+export { default as TagsComp } from "./TagsComp";
