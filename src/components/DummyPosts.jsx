@@ -22,8 +22,12 @@ function DummyPosts(props) {
       const result = await response.json();
       console.log(result);
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log(currentUser);
-      setUser(currentUser);
+      if (currentUser) {
+        const matchingUser = result.users.find((u) => u.username === currentUser.username);
+        setUser(matchingUser);
+      } else {
+        setUser(null);
+      }
     }
     fetchUser();
   }, []);
@@ -103,7 +107,17 @@ function DummyPosts(props) {
       <div>{mapPosts}</div>
       <div className="openedPostWindow">
       <div>{renderUserProfile()}</div>
-         
+         {
+          user ? (
+            <div>
+              <h2>{user.name}</h2>
+              <p>{user.username}</p>
+              <p>{user.email}</p>
+            </div>
+          ) : (
+            <p>Please log in to view your profile</p>
+          )
+         }
           <Link to="/profile" className="openedPostMyProfileBtn">
             MY PROFILE
           </Link>
