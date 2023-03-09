@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { getIndividualPost, DeletePost, getAllTags } from "../api-adapter";
 
 function TagsComp(props) {
-  console.log(props);
+  
   return <p>{props.tag.name}</p>;
 }
 export default TagsComp;

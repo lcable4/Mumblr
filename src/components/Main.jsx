@@ -18,7 +18,7 @@ const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([]);
-  console.log(posts, users);
+  
 
   async function fetchAllPosts() {
     try {
@@ -50,7 +50,7 @@ const Main = () => {
     fetchAllTags();
     fetchAllUsers();
   }, []);
-
+  console.log(posts, users);
   return (
     <>
       <div id="main">

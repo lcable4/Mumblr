@@ -4,48 +4,18 @@ import { Link, useParams } from "react-router-dom";
 import { TagsComp, ProfilePanel, Profile } from "./";
 import { DeletePost, getUsers } from "../api-adapter";
 
-function DummyPosts(props) {
+export default function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
   const [user, setUser] = useState(null);
   const [allUsers, setAllUsers] = useState(null);
-  console.log(props);
+  const currentUser = localStorage.getItem('username');
+  console.log(props)
+
   function displayPost(post) {
     console.log(post);
     setOpenedPost(post);
     console.log(openedPost);
   }
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const response = await getUsers();
-  //     const result = await response.json();
-  //     setAllUsers(result);
-  //     console.log(result);
-  //     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  //     if (currentUser) {
-  //       const matchingUser = result.users.find(
-  //         (u) => u.username === currentUser.username
-  //       );
-  //       setUser(matchingUser);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   };
-  //   fetchUser();
-  // }, []);
-
-  // const renderUserProfile = () => {
-  //   if (!user) {
-  //     return null;
-  //   }
-
-  //   return (
-  //     <div>
-  //       <h2>{user.username}</h2>
-  //       <p>{user.bio}</p>
-  //     </div>
-  //   );
-  // };
 
   const handleClickDelete = async (id) => {
     const result = await DeletePost(id);
@@ -58,7 +28,9 @@ function DummyPosts(props) {
     }
   };
 
-  // const result = post.filter(post => post.title.includes)
+  const filteredUsers = props.users.filter((u) => u.username !== currentUser);
+  console.log(filteredUsers)
+
 
   const mapPosts = props.posts.map((post) => {
     return (
@@ -74,8 +46,6 @@ function DummyPosts(props) {
             <p>@{post.author.username}</p>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
-            {/* 
-          <Tags tags={post.tags}/> */}
             {post.tags.length
               ? post.tags.map((tag) => (
                   <TagsComp key={`tag map and tag ${tag.id}`} tag={tag} />
@@ -100,33 +70,27 @@ function DummyPosts(props) {
   });
   // Deleted CSS classnames, openedPostContainer, openedPostWindow
   // companyLogoPostWindow, openedPostTextBox
-  return (
-    <>
-      <div className="openedPostContainer">
-        <div>{mapPosts}</div>
-        <div className="openedPostWindow">
-          <img
-            className="companyLogoPostWindow"
-            src="/Untitled_Artwork 27.png"
-            alt=""
-          />
-          {/* <ProfilePanel /> */}
-          {users.length
-            ? post.users.map((user) => (
-                <ProfilePanel
-                  key={`user map and user ${user.id}`}
-                  user={user}
-                />
-              ))
-            : null}
-
-          <Link to="/profile" className="openedPostMyProfileBtn">
-            MY PROFILE
-          </Link>
-        </div>
-      </div>
-    </>
-  );
+  const mapUsers = filteredUsers.map((user) => { 
+      return (
+        <>
+          <div className="openedPostContainer">
+            <div>{mapPosts}</div>
+            <div className="openedPostWindow">
+              <img
+                className="companyLogoPostWindow"
+                src="/Untitled_Artwork 27.png"
+                alt=""
+              />
+              {/* <ProfilePanel /> */}
+              <ProfilePanel key={`user map and user ${user.id}`} user={user} />
+  
+              <Link to="/profile" className="openedPostMyProfileBtn">
+                MY PROFILE
+              </Link>
+            </div>
+          </div>
+        </>
+      );
+    });
+  return <>{props.posts && props.users ? mapUsers : <div>Loading...</div>}</>;
 }
-
-export default DummyPosts;

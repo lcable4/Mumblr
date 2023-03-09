@@ -29,7 +29,7 @@ import { getUsers } from "../api-adapter";
 //   return <p>{myProfile.id}</p>;
 // }
 function ProfilePanel(props) {
-  console.log(props);
+  
   return <p>{props.user.id}</p>;
 }
 
