@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
-import { TagsComp, Profile } from "./";
+import { TagsComp, ProfilePanel, Profile } from "./";
 import { DeletePost, getUsers } from "../api-adapter";
+
 
 function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
@@ -15,37 +16,37 @@ function DummyPosts(props) {
     console.log(openedPost);
   }
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await getUsers();
-      const result = await response.json();
-      setAllUsers(result);
-      console.log(result);
-      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      if (currentUser) {
-        const matchingUser = result.users.find(
-          (u) => u.username === currentUser.username
-        );
-        setUser(matchingUser);
-      } else {
-        setUser(null);
-      }
-    };
-    fetchUser();
-  }, []);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const response = await getUsers();
+  //     const result = await response.json();
+  //     setAllUsers(result);
+  //     console.log(result);
+  //     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  //     if (currentUser) {
+  //       const matchingUser = result.users.find(
+  //         (u) => u.username === currentUser.username
+  //       );
+  //       setUser(matchingUser);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, []);
 
-  const renderUserProfile = () => {
-    if (!user) {
-      return null;
-    }
+  // const renderUserProfile = () => {
+  //   if (!user) {
+  //     return null;
+  //   }
 
-    return (
-      <div>
-        <h2>{user.username}</h2>
-        <p>{user.bio}</p>
-      </div>
-    );
-  };
+  //   return (
+  //     <div>
+  //       <h2>{user.username}</h2>
+  //       <p>{user.bio}</p>
+  //     </div>
+  //   );
+  // };
 
   const handleClickDelete = async (id) => {
     const result = await DeletePost(id);
@@ -110,17 +111,9 @@ function DummyPosts(props) {
             src="/Untitled_Artwork 27.png"
             alt=""
           />
-          <Profile />
-          {renderUserProfile()}
-          {user ? (
-            <div>
-              <h2>{user.name}</h2>
-              <p>{user.username}</p>
-              <p>{user.email}</p>
-            </div>
-          ) : (
-            <p>Please log in to view your profile</p>
-          )}
+          {
+            <Profile />
+          }
 
           <Link to="/profile" className="openedPostMyProfileBtn">
             MY PROFILE
