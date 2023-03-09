@@ -28,7 +28,7 @@ export default function DummyPosts(props) {
     }
   };
 
-  const filteredUsers = props.users.filter((u) => u.username !== currentUser);
+  const filteredUsers = props.users.filter((u) => u.username = currentUser);
   console.log(filteredUsers)
 
 
@@ -70,26 +70,27 @@ export default function DummyPosts(props) {
   });
   // Deleted CSS classnames, openedPostContainer, openedPostWindow
   // companyLogoPostWindow, openedPostTextBox
-  const mapUsers = filteredUsers.map((user) => { 
+  const mapUsers = filteredUsers.map((user) => {
+    if (user.username === currentUser) {
       return (
-        <>
-          <div className="openedPostContainer" key={`user map and user ${user.id}`}>
-            <div>{mapPosts}</div>
-            <div className="openedPostWindow">
-              <img
-                className="companyLogoPostWindow"
-                src="/Untitled_Artwork 27.png"
-                alt=""
-              />
-              <ProfilePanel user={user} />
+        <div className="openedPostContainer" key={`user map and user ${user.id}`}>
+          <div>{mapPosts}</div>
+          <div className="openedPostWindow">
+            <img
+              className="companyLogoPostWindow"
+              src="/Untitled_Artwork 27.png"
+              alt=""
+            />
+            <ProfilePanel user={user} />
   
-              <Link to="/profile" className="openedPostMyProfileBtn">
-                MY PROFILE
-              </Link>
-            </div>
+            <Link to="/profile" className="openedPostMyProfileBtn">
+              MY PROFILE
+            </Link>
           </div>
-        </>
+        </div>
       );
-    });
-  return <>{props.posts && props.users ? mapUsers : <div>Loading...</div>}</>;
+    } else {
+      return null;
+    }
+  });
 }
