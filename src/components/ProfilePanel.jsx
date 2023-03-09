@@ -30,7 +30,7 @@ import { getUsers } from "../api-adapter";
 // }
 function ProfilePanel(props) {
   
-  return <p>{props.user.id}</p>;
+  return <p>{props.user.username}</p>;
 }
 
 export default ProfilePanel;
