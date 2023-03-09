@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import { useResolvedPath } from "react-router-dom";
+import { createRoutesFromElements, useResolvedPath } from "react-router-dom";
 import { getUsers } from "../api-adapter";
 
 // function ProfilePanel() {
@@ -29,14 +29,38 @@ import { getUsers } from "../api-adapter";
 //   return <p>{myProfile.id}</p>;
 // }
 function ProfilePanel(props) {
-  console.log(props)
+  const [currentUserObject, setCurrentUserObject] = useState(null);
+  console.log(props, "PROPS");
+
+  useEffect(() => {
+    if (props.users.length) {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const filteredUser = props.users.filter((element) => {
+        console.log(typeof element.username, "ELEMENT");
+        if (element.username == currentUser) {
+          console.log("Hello");
+          return true;
+        } else {
+          return false;
+        }
+      });
+      if (filteredUser.length) {
+        setCurrentUserObject(filteredUser[0]);
+      }
+    }
+  }, [props.users]);
   return (
     <div>
-        <p>{props.user.username}</p>
-        <p>{props.user.name}</p>
-        <p>{props.user.location}</p>
+      <h1>HELLO</h1>
+      {currentUserObject && currentUserObject.username ? (
+        <>
+          <p>{currentUserObject.username}</p>
+          <p>{currentUserObject.name}</p>
+          <p>{currentUserObject.location}</p>
+        </>
+      ) : null}
     </div>
-      )
+  );
 }
 
 export default ProfilePanel;

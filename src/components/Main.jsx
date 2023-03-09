@@ -8,6 +8,7 @@ import {
   Profile,
   SearchBar,
   TagsComp,
+  ProfilePanel,
 } from "./";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getAllTags, getPosts, getUsers } from "../api-adapter";
@@ -18,7 +19,6 @@ const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([]);
-  
 
   async function fetchAllPosts() {
     try {
@@ -40,6 +40,7 @@ const Main = () => {
   async function fetchAllUsers() {
     try {
       const response = await getUsers();
+      console.log(response);
       setUsers(response);
     } catch (err) {
       console.error(err);
@@ -56,10 +57,17 @@ const Main = () => {
       <div id="main">
         <BrowserRouter>
           <Navbar posts={posts} setPosts={setPosts} />
+          <ProfilePanel users={users} />
           <Routes>
             <Route
               path="/"
-              element={<DummyPosts posts={posts} users={users} />}
+              element={
+                <DummyPosts
+                  posts={posts}
+                  users={users}
+                  currentUser={currentUser}
+                />
+              }
             />
             <Route
               path="/login"

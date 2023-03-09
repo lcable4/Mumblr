@@ -6,10 +6,9 @@ import { DeletePost, getUsers } from "../api-adapter";
 
 export default function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
-  const [user, setUser] = useState(null);
-  const [allUsers, setAllUsers] = useState(null);
-  const currentUser = localStorage.getItem('username');
-  console.log(props)
+
+  const currentUser = localStorage.getItem("currentUser");
+  console.log(currentUser, "CYRRENTUSER");
 
   function displayPost(post) {
     console.log(post);
@@ -28,9 +27,8 @@ export default function DummyPosts(props) {
     }
   };
 
-  const filteredUsers = props.users.filter((u) => u.username = currentUser);
-  console.log(filteredUsers)
-
+  // const filteredUsers = props.users.filter((u) => (u.username = currentUser));
+  // console.log(filteredUsers);
 
   const mapPosts = props.posts.map((post) => {
     return (
@@ -70,27 +68,31 @@ export default function DummyPosts(props) {
   });
   // Deleted CSS classnames, openedPostContainer, openedPostWindow
   // companyLogoPostWindow, openedPostTextBox
-  const mapUsers = filteredUsers.map((user) => {
-    if (user.username === currentUser) {
-      return (
-        <div className="openedPostContainer" key={`user map and user ${user.id}`}>
-          <div>{mapPosts}</div>
-          <div className="openedPostWindow">
-            <img
-              className="companyLogoPostWindow"
-              src="/Untitled_Artwork 27.png"
-              alt=""
-            />
-            <ProfilePanel user={user} />
-  
-            <Link to="/profile" className="openedPostMyProfileBtn">
-              MY PROFILE
-            </Link>
-          </div>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  });
+  // const mapUsers = filteredUsers.map((user) => {
+  // if (user.username === currentUser) {
+  return (
+    <div
+      className="openedPostContainer"
+      key={`user map and user ${currentUser.id}`}
+    >
+      <div>{mapPosts}</div>
+      <div className="openedPostWindow">
+        <img
+          className="companyLogoPostWindow"
+          src="/Untitled_Artwork 27.png"
+          alt=""
+        />
+        <ProfilePanel users={props.users} />
+        <div>{currentUser}</div>
+
+        <Link to="/profile" className="openedPostMyProfileBtn">
+          MY PROFILE
+        </Link>
+      </div>
+    </div>
+  );
+  // } else {
+  //   return null;
+  // }
+  // });
 }
