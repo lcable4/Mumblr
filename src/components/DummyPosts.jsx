@@ -4,12 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { TagsComp, ProfilePanel, Profile } from "./";
 import { DeletePost, getUsers } from "../api-adapter";
 
-
 function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
   const [user, setUser] = useState(null);
   const [allUsers, setAllUsers] = useState(null);
-
+  console.log(props);
   function displayPost(post) {
     console.log(post);
     setOpenedPost(post);
@@ -111,9 +110,15 @@ function DummyPosts(props) {
             src="/Untitled_Artwork 27.png"
             alt=""
           />
-          {
-            <Profile />
-          }
+          {/* <ProfilePanel /> */}
+          {users.length
+            ? post.users.map((user) => (
+                <ProfilePanel
+                  key={`user map and user ${user.id}`}
+                  user={user}
+                />
+              ))
+            : null}
 
           <Link to="/profile" className="openedPostMyProfileBtn">
             MY PROFILE

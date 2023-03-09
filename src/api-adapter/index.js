@@ -27,9 +27,12 @@ export const getAllTags = async () => {
 
 export const getUsers = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/users`);
-    console.log(response)
-    return response;
+    const response = await fetch(`${BASE_URL}/users`, {
+      method: "GET",
+    });
+    const result = await response.json();
+    console.log(result);
+    return result.users;
   } catch (error) {
     console.log(error);
   }
@@ -81,7 +84,7 @@ export const loginUser = async (username, password) => {
       }),
     });
     const result = await response.json();
-    console.log(result)
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
@@ -167,4 +170,3 @@ export const DeletePost = async (id) => {
     console.log(error);
   }
 };
-
