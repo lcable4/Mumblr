@@ -23,7 +23,7 @@ function Register() {
     localStorage.setItem("token", result.data.token);
     setUsername("");
     setPassword("");
-    setCurrentUser();
+    setCurrentUser(result.data);
         navigate("/login");
 
   };

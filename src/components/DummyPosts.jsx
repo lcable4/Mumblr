@@ -8,7 +8,7 @@ import {  DeletePost, getUsers, } from "../api-adapter";
 
 function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
 
   function displayPost(post) {
     console.log(post);
@@ -21,7 +21,7 @@ function DummyPosts(props) {
       const response = await getUsers();
       const result = await response.json();
       console.log(result);
-      const currentUser = result.users.find(user => user.username === props.currentUser.id)[0];
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       console.log(currentUser);
       setUser(currentUser);
     }

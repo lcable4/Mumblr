@@ -7,6 +7,7 @@ function Login() {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
 
   const setCurrentUser = (user) => {
@@ -21,7 +22,7 @@ function Login() {
         if (result && result.token) {
           localStorage.setItem("token", result.token);
           setLoggedIn(true);
-          setCurrentUser();
+          setCurrentUser(userName);
           navigate("/");
         } else {
           console.log(result.error);
