@@ -2,16 +2,46 @@ import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import { TagsComp } from "./";
-import { getIndividualPost, DeletePost, getAllTags } from "../api-adapter";
+import {  DeletePost, getUsers, } from "../api-adapter";
+
+
 
 function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
+  const [user, setUser] = useState("");
 
   function displayPost(post) {
     console.log(post);
     setOpenedPost(post);
     console.log(openedPost);
   }
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await getUsers();
+      const result = await response.json();
+      console.log(result);
+      const currentUser = result.users.find(user => user.username === props.currentUser.id)[0];
+      console.log(currentUser);
+      setUser(currentUser);
+    }
+    fetchUser();
+  }, []);
+
+  const renderUserProfile = () => {
+    if (!user) {
+      return null;
+    }
+
+    return (
+      <div>
+        <h2>{user.username}</h2>
+        <p>{user.bio}</p>
+      </div>
+    );
+  };
+
+
   const handleClickDelete = async (id) => {
     const result = await DeletePost(id);
     console.log("hello");
@@ -66,15 +96,21 @@ function DummyPosts(props) {
     );
   });
   // Deleted CSS classnames, openedPostContainer, openedPostWindow
-  // companyLogoPostWindow, openedPostTextBox, openedPostMessageSellerBtn
+  // companyLogoPostWindow, openedPostTextBox
   return (
+    <>
     <div className="openedPostContainer">
       <div>{mapPosts}</div>
       <div className="openedPostWindow">
-        
+      <div>{renderUserProfile()}</div>
+         
+          <Link to="/profile" className="openedPostMyProfileBtn">
+            MY PROFILE
+          </Link>
+        </div>
       </div>
-      <div></div>
-    </div>
+      
+  </>
   );
 }
 

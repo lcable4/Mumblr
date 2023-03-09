@@ -9,6 +9,10 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+  const setCurrentUser = (user) => {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    setUser(user);
+  }
 
     const handleClick = async (event) => {
         event.preventDefault();
@@ -17,6 +21,7 @@ function Login() {
         if (result && result.token) {
           localStorage.setItem("token", result.token);
           setLoggedIn(true);
+          setCurrentUser();
           navigate("/");
         } else {
           console.log(result.error);

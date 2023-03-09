@@ -28,9 +28,8 @@ export const getAllTags = async () => {
 export const getUsers = async () => {
   try {
     const response = await fetch(`${BASE_URL}/users`);
-    const result = await response.json();
-    console.log(result.users)
-    return result.users;
+    console.log(response)
+    return response;
   } catch (error) {
     console.log(error);
   }

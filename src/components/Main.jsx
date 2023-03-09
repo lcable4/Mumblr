@@ -16,13 +16,12 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const [tags, setTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
+
 
   async function fetchAllPosts() {
     try {
       const response = await getPosts();
-
-      //       const postsData = result.data.posts;
-      // console.log(postsData)
       setPosts(response);
     } catch (err) {
       console.error(err);
@@ -32,12 +31,7 @@ const Main = () => {
   async function fetchAllTags() {
     try {
       const response = await getAllTags();
-
-      console.log(response, "tags");
-      //       const postsData = result.data.posts;
-      // console.log(postsData)
       setTags(response);
-      console.log(response, "response");
     } catch (err) {
       console.error(err);
     }
@@ -49,20 +43,16 @@ const Main = () => {
 
   return (
     <>
-      {/* {tags.map((tag) => (<Tags key={tag.id} tag={tag} />
-    ))} */}
-
       <div id="main">
         <BrowserRouter>
           <Navbar posts={posts} setPosts={setPosts} />
           <Routes>
-          <Route path="/" element={<DummyPosts posts={posts} />} />
-            <Route path="/login" element={<Login />} />
-           <Route path="/register" element={<Register />} /> 
-          <Route path="/newpost" element={<NewPost />} />
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/SearchBar" element={<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={setPosts}/>} />
+            <Route path="/" element={<DummyPosts posts={posts} setCurrentUser={setCurrentUser}/>} />
+              <Route path="/login" element={<Login setCurrentUser={setCurrentUser}/>} />
+            <Route path="/register" element={<Register setCurrentUser={setCurrentUser}/>} /> 
+            <Route path="/newpost" element={<NewPost />} />
+            <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
+            <Route path="/SearchBar" element={<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={setPosts}/>} />
           </Routes>
         </BrowserRouter>
       </div>

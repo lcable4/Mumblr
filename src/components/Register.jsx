@@ -3,6 +3,12 @@ import { ReactDOM } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../api-adapter";
 
+const setCurrentUser = (user) => {
+  localStorage.setItem('currentUser', JSON.stringify(user));
+  setUser(user);
+}
+
+
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +21,9 @@ function Register() {
     // makeProfile(username, password);
     const result = await registerUser(username, password);
     localStorage.setItem("token", result.data.token);
-    setUsername("")
-    setPassword("")
+    setUsername("");
+    setPassword("");
+    setCurrentUser();
         navigate("/login");
 
   };
