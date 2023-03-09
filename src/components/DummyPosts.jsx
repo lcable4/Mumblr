@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import { TagsComp } from "./";
-import {  DeletePost, getUsers, } from "../api-adapter";
-
-
+import { DeletePost, getUsers } from "../api-adapter";
 
 function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
   const [user, setUser] = useState(null);
-  const [allUsers, setAllUsers] = useState(null)
+  const [allUsers, setAllUsers] = useState(null);
 
   function displayPost(post) {
     console.log(post);
@@ -21,16 +19,18 @@ function DummyPosts(props) {
     const fetchUser = async () => {
       const response = await getUsers();
       const result = await response.json();
-      setAllUsers(result)
+      setAllUsers(result);
       console.log(result);
-      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
       if (currentUser) {
-        const matchingUser = result.users.find((u) => u.username === currentUser.username);
+        const matchingUser = result.users.find(
+          (u) => u.username === currentUser.username
+        );
         setUser(matchingUser);
       } else {
         setUser(null);
       }
-    }
+    };
     fetchUser();
   }, []);
 
@@ -47,7 +47,6 @@ function DummyPosts(props) {
     );
   };
 
-
   const handleClickDelete = async (id) => {
     const result = await DeletePost(id);
     console.log("hello");
@@ -61,9 +60,7 @@ function DummyPosts(props) {
 
   // const result = post.filter(post => post.title.includes)
 
-  
   const mapPosts = props.posts.map((post) => {
-    
     return (
       <div className="fullPostBox" key={`post map and all post${post.id}`}>
         <div
@@ -105,10 +102,15 @@ function DummyPosts(props) {
   // companyLogoPostWindow, openedPostTextBox
   return (
     <>
-    <div className="openedPostContainer">
-      <div>{mapPosts}</div>
-      <div className="openedPostWindow">
-      {renderUserProfile()}
+      <div className="openedPostContainer">
+        <div>{mapPosts}</div>
+        <div className="openedPostWindow">
+          <img
+            className="companyLogoPostWindow"
+            src="/Untitled_Artwork 27.png"
+            alt=""
+          />
+          {renderUserProfile()}
           {user ? (
             <div>
               <h2>{user.name}</h2>
@@ -118,14 +120,13 @@ function DummyPosts(props) {
           ) : (
             <p>Please log in to view your profile</p>
           )}
-         
+
           <Link to="/profile" className="openedPostMyProfileBtn">
             MY PROFILE
           </Link>
         </div>
       </div>
-      
-  </>
+    </>
   );
 }
 
