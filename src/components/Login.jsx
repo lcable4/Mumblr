@@ -6,6 +6,7 @@ import { loginUser } from "../api-adapter";
 function Login() {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
 
@@ -13,8 +14,9 @@ function Login() {
         event.preventDefault();
         const result = await loginUser(userName, password);
         console.log(result)
-        if (result != undefined) {
-          localStorage.setItem("token", result.data.token);
+        if (result && result.token) {
+          localStorage.setItem("token", result.token);
+          setLoggedIn(true);
           navigate("/");
         } else {
           console.log(result.error);

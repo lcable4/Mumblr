@@ -24,6 +24,18 @@ export const getAllTags = async () => {
     console.log(error);
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/users`);
+    const result = await response.json();
+    console.log(result.users)
+    return result.users;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getIndividualPost = async (_id) => {
   try {
     const response = await fetch(`${BASE_URL}/${_id}`, {
@@ -65,13 +77,12 @@ export const loginUser = async (username, password) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
-          username: username,
-          password: password,
-        },
+        username: username,
+        password: password,
       }),
     });
     const result = await response.json();
+    console.log(result)
     return result;
   } catch (error) {
     console.log(error);
@@ -80,21 +91,18 @@ export const loginUser = async (username, password) => {
 
 export const registerUser = async (username, password) => {
   try {
-    const response = await fetch(
-      "https://strangers-things.herokuapp.com/api/2301-ftb-et-web-ft/users/register",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    const response = await fetch(`${BASE_URL}/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
         },
-        body: JSON.stringify({
-          user: {
-            username: username,
-            password: password,
-          },
-        }),
-      }
-    );
+      }),
+    });
     const result = await response.json();
     return result;
   } catch (error) {
@@ -160,13 +168,4 @@ export const DeletePost = async (id) => {
     console.log(error);
   }
 };
-export const getUsers = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/users`);
-    const result = await response.json();
-    console.log(result.users)
-    return result.users;
-  } catch (error) {
-    console.log(error);
-  }
-};
+

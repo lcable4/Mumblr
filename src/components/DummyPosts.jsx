@@ -65,34 +65,13 @@ function DummyPosts(props) {
       </div>
     );
   });
-  // getIndividualPost()
-
-  // function filterPosts (id) {
-  //     for(let i = 0; i <= posts.length; i++)
-  //     if(posts.id ){
-
-  //     }
-  // }
-
+  // Deleted CSS classnames, openedPostContainer, openedPostWindow
+  // companyLogoPostWindow, openedPostTextBox, openedPostMessageSellerBtn
   return (
-    // <div key={`${post._id}`}>
     <div className="openedPostContainer">
       <div>{mapPosts}</div>
       <div className="openedPostWindow">
-        <img className="companyLogoPostWindow" src="/Untitled_Artwork 25.png" />
-        <div className="openedPostTextBox">
-          <div className="openedPostText">
-            <h2>{openedPost.title}</h2>
-            <p>Price: {openedPost.price}</p>
-            <p>Description: {openedPost.description}</p>
-            <p>Location: {openedPost.location}</p>
-          </div>
-          <button className="openedPostMessageSellerBtn">MESSAGE SELLER</button>
-
-          <Link to="/profile" className="openedPostMyProfileBtn">
-            MY PROFILE
-          </Link>
-        </div>
+        
       </div>
       <div></div>
     </div>

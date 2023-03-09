@@ -21,7 +21,6 @@ const Main = () => {
     try {
       const response = await getPosts();
 
-      console.log(response);
       //       const postsData = result.data.posts;
       // console.log(postsData)
       setPosts(response);

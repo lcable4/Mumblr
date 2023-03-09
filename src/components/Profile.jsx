@@ -6,7 +6,15 @@ import { getUsers } from "../api-adapter";
 
 
  function Profile(){
-let users = getUsers();
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        async function fetchUsers() {
+            let users = await getUsers();
+            setUsers(users);
+        }
+        fetchUsers();
+    }, []);
 console.log(users)
 
 return(
