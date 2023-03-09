@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
-import { TagsComp } from "./";
+import { TagsComp, Profile } from "./";
 import { DeletePost, getUsers } from "../api-adapter";
 
 function DummyPosts(props) {
@@ -110,6 +110,7 @@ function DummyPosts(props) {
             src="/Untitled_Artwork 27.png"
             alt=""
           />
+          <Profile />
           {renderUserProfile()}
           {user ? (
             <div>
