@@ -9,6 +9,7 @@ import {  DeletePost, getUsers, } from "../api-adapter";
 function DummyPosts(props) {
   const [openedPost, setOpenedPost] = useState({});
   const [user, setUser] = useState(null);
+  const [allUsers, setAllUsers] = useState(null)
 
   function displayPost(post) {
     console.log(post);
@@ -20,6 +21,7 @@ function DummyPosts(props) {
     const fetchUser = async () => {
       const response = await getUsers();
       const result = await response.json();
+      setAllUsers(result)
       console.log(result);
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       if (currentUser) {
@@ -106,9 +108,8 @@ function DummyPosts(props) {
     <div className="openedPostContainer">
       <div>{mapPosts}</div>
       <div className="openedPostWindow">
-      <div>{renderUserProfile()}</div>
-         {
-          user ? (
+      {renderUserProfile()}
+          {user ? (
             <div>
               <h2>{user.name}</h2>
               <p>{user.username}</p>
@@ -116,8 +117,8 @@ function DummyPosts(props) {
             </div>
           ) : (
             <p>Please log in to view your profile</p>
-          )
-         }
+          )}
+         
           <Link to="/profile" className="openedPostMyProfileBtn">
             MY PROFILE
           </Link>
