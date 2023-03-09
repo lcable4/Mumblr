@@ -73,7 +73,7 @@ export default function DummyPosts(props) {
   const mapUsers = filteredUsers.map((user) => { 
       return (
         <>
-          <div className="openedPostContainer">
+          <div className="openedPostContainer" key={`user map and user ${user.id}`}>
             <div>{mapPosts}</div>
             <div className="openedPostWindow">
               <img
@@ -81,8 +81,7 @@ export default function DummyPosts(props) {
                 src="/Untitled_Artwork 27.png"
                 alt=""
               />
-              {/* <ProfilePanel /> */}
-              <ProfilePanel key={`user map and user ${user.id}`} user={user} />
+              <ProfilePanel user={user} />
   
               <Link to="/profile" className="openedPostMyProfileBtn">
                 MY PROFILE

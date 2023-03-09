@@ -29,8 +29,14 @@ import { getUsers } from "../api-adapter";
 //   return <p>{myProfile.id}</p>;
 // }
 function ProfilePanel(props) {
-  
-  return <p>{props.user.username}</p>;
+  console.log(props)
+  return (
+    <div>
+        <p>{props.user.username}</p>
+        <p>{props.user.name}</p>
+        <p>{props.user.location}</p>
+    </div>
+      )
 }
 
 export default ProfilePanel;
