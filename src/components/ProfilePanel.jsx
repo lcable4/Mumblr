@@ -51,7 +51,6 @@ function ProfilePanel(props) {
   }, [props.users]);
   return (
     <div>
-      <h1>HELLO</h1>
       {currentUserObject && currentUserObject.username ? (
         <>
           <p>{currentUserObject.username}</p>

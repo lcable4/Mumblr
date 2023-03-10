@@ -29,6 +29,7 @@ body {
   border-left: none;
   border-top: none;
   border-right: none;
+  color: white;
 }
 .postInfo {
 
@@ -217,6 +218,7 @@ transform: translateY(1px);
 }
 .openedPostWindow {
   border: 0.7px solid rgb(0, 0, 0);
+  color: white;
   margin: 1rem;
   height: 800px;
   width: 600px;
@@ -424,6 +426,7 @@ rArial, Helvetica, sans-serif;
 }
 .profileBox {
   border: 1px solid black;
+
   border-radius: 15px;
   box-shadow: -4px 8px 3px rgb(49, 49, 49);
   padding: 1rem;

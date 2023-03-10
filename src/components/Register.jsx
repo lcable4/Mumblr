@@ -3,10 +3,6 @@ import { ReactDOM } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../api-adapter";
 
-const setCurrentUser = (user) => {
-  localStorage.setItem("currentUser", JSON.stringify(user));
-};
-
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,19 +12,25 @@ function Register() {
   //   const [confirmPass, setConfirmPass] = useState("");
   //   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  // console.log( username, "USERNAME")
+  // console.log( password, "PASSWORD")
+  // console.log( location, "LOCATION")
 
-  const handleSubmit = async (e) => {
+  const registerNewUser = async (username, password, name, location) => {
+    if (!username || !password || !name || !location) {
+      console.log("All fields are required");
+      return;
+    }
+
     try {
-      e.preventDefault();
-      // makeProfile(username, password);
       const result = await registerUser(username, password, name, location);
-      console.log(result, "RESULT25");
+      console.log(result.token, "RESULT25");
       localStorage.setItem("token", result.token);
-      setUsername("");
-      setPassword("");
-      setName("");
-      setLocation("");
-      setUser(user);
+      setUsername(username);
+      setPassword(password);
+      setName(name);
+      setLocation(location);
+      setUser(username);
       // setCurrentUser(result.data);
       navigate("/login");
     } catch (error) {
@@ -36,12 +38,18 @@ function Register() {
     }
   };
 
-  console.log(username);
+  console.log(typeof username);
   return (
     <div className="loginPageBox">
       <div className="loginPage">
         <h1>Create Account</h1>
-        <form onSubmit={handleSubmit}>
+        <form
+          className="registrationForm"
+          onSubmit={(e) => {
+            e.preventDefault();
+            registerNewUser(username, password, name, location);
+          }}
+        >
           <p>Username:</p>
           <input
             className="userNameInput"
@@ -49,6 +57,14 @@ function Register() {
             type="text"
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
+          />
+          <p>Password:</p>
+          <input
+            className="passwordInput"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <p>Name:</p>
           <input
@@ -66,14 +82,6 @@ function Register() {
             type="text"
             placeholder="Location"
             onChange={(e) => setLocation(e.target.value)}
-          />
-          <p>Password:</p>
-          <input
-            className="passwordInput"
-            value={password}
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
           />
           <br></br>
           <p>Confirm Password:</p>
