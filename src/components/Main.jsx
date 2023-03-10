@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Navbar,
-  DummyPosts,
+  Home,
   Login,
   Register,
   NewPost,
@@ -62,11 +62,7 @@ const Main = () => {
             <Route
               path="/"
               element={
-                <DummyPosts
-                  posts={posts}
-                  users={users}
-                  currentUser={currentUser}
-                />
+                <Home posts={posts} users={users} currentUser={currentUser} />
               }
             />
             <Route

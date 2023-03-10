@@ -91,7 +91,7 @@ export const loginUser = async (username, password) => {
   }
 };
 
-export const registerUser = async (username, password) => {
+export const registerUser = async (username, password, name, location) => {
   try {
     const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
@@ -102,6 +102,8 @@ export const registerUser = async (username, password) => {
         user: {
           username: username,
           password: password,
+          name: name,
+          location: location,
         },
       }),
     });

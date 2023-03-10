@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
-import { TagsComp, ProfilePanel, Profile } from "./";
+import { TagsComp, ProfilePanel, Profile } from ".";
 import { DeletePost, getUsers } from "../api-adapter";
 
-export default function DummyPosts(props) {
+export default function Home(props) {
   const [openedPost, setOpenedPost] = useState({});
 
   const currentUser = localStorage.getItem("currentUser");

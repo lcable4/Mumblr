@@ -11,24 +11,23 @@ function Login() {
   const navigate = useNavigate();
 
   const setCurrentUser = (user) => {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem("currentUser", JSON.stringify(user));
     setUser(user);
-  }
+  };
 
-    const handleClick = async (event) => {
-        event.preventDefault();
-        const result = await loginUser(userName, password);
-        console.log(result)
-        if (result && result.token) {
-          localStorage.setItem("token", result.token);
-          setLoggedIn(true);
-          setCurrentUser(userName);
-          navigate("/");
-        } else {
-          console.log(result.error);
-        }
-  }
-
+  const handleClick = async (event) => {
+    event.preventDefault();
+    const result = await loginUser(userName, password);
+    console.log(result);
+    if (result && result.token) {
+      localStorage.setItem("token", result.token);
+      setLoggedIn(true);
+      setCurrentUser(userName);
+      navigate("/");
+    } else {
+      console.log(result.error);
+    }
+  };
 
   return (
     <div className="loginPageBox">
@@ -48,7 +47,7 @@ function Login() {
           <input
             className="passwordInput"
             value={password}
-            type="text"
+            type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />

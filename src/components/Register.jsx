@@ -4,30 +4,39 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../api-adapter";
 
 const setCurrentUser = (user) => {
-  localStorage.setItem('currentUser', JSON.stringify(user));
-  setUser(user);
-}
-
+  localStorage.setItem("currentUser", JSON.stringify(user));
+};
 
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-//   const [confirmPass, setConfirmPass] = useState("");
-//   const [users, setUsers] = useState([]);
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [user, setUser] = useState("");
+  //   const [confirmPass, setConfirmPass] = useState("");
+  //   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // makeProfile(username, password);
-    const result = await registerUser(username, password);
-    localStorage.setItem("token", result.data.token);
-    setUsername("");
-    setPassword("");
-    setCurrentUser(result.data);
-        navigate("/login");
-
+    try {
+      e.preventDefault();
+      // makeProfile(username, password);
+      const result = await registerUser(username, password, name, location);
+      console.log(result, "RESULT25");
+      localStorage.setItem("token", result.token);
+      setUsername("");
+      setPassword("");
+      setName("");
+      setLocation("");
+      setUser(user);
+      // setCurrentUser(result.data);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  console.log(username);
   return (
     <div className="loginPageBox">
       <div className="loginPage">
@@ -41,12 +50,28 @@ function Register() {
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
           />
+          <p>Name:</p>
+          <input
+            className="userNameInput"
+            value={name}
+            type="text"
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
           <br></br>
+          <p>Location:</p>
+          <input
+            className="userNameInput"
+            value={location}
+            type="text"
+            placeholder="Location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
           <p>Password:</p>
           <input
             className="passwordInput"
             value={password}
-            type="text"
+            type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -55,16 +80,12 @@ function Register() {
           <input
             className="passwordInput"
             // value={confirmPass}
-            type="text"
+            type="password"
             placeholder="Confirm Password"
           />
 
           <br></br>
-          <button
-            className="submitBtn"
-            type="submit"
-
-          >
+          <button className="submitBtn" type="submit">
             Submit
           </button>
           <br></br>
@@ -73,7 +94,7 @@ function Register() {
           </Link>
           <img
             className="companyLogoLoginBox"
-            src="/Untitled_Artwork 25.png"
+            src="/Untitled_Artwork 27.png"
             alt=""
           />
         </form>
