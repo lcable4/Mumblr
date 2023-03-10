@@ -19,6 +19,7 @@ const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   async function fetchAllPosts() {
     try {
@@ -56,7 +57,7 @@ const Main = () => {
     <>
       <div id="main">
         <BrowserRouter>
-          <Navbar posts={posts} setPosts={setPosts} />
+          <Navbar posts={posts} setPosts={setPosts} loggedIn={loggedIn} />
           {/* <ProfilePanel users={users} /> */}
           <Routes>
             <Route
@@ -67,11 +68,23 @@ const Main = () => {
             />
             <Route
               path="/login"
-              element={<Login setCurrentUser={setCurrentUser} />}
+              element={
+                <Login
+                  setCurrentUser={setCurrentUser}
+                  loggedIn={loggedIn}
+                  setLoggedIn={setLoggedIn}
+                />
+              }
             />
             <Route
               path="/register"
-              element={<Register setCurrentUser={setCurrentUser} />}
+              element={
+                <Register
+                  setCurrentUser={setCurrentUser}
+                  loggedIn={loggedIn}
+                  setLoggedIn={setLoggedIn}
+                />
+              }
             />
             <Route path="/newpost" element={<NewPost />} />
             <Route

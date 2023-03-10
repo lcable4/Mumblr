@@ -32,6 +32,13 @@ function ProfilePanel(props) {
   const [currentUserObject, setCurrentUserObject] = useState(null);
   console.log(props, "PROPS");
 
+  function ifUserLogged() {
+    if (localStorage.getItem("token")) {
+      return true;
+    }
+    return false;
+  }
+
   useEffect(() => {
     if (props.users.length) {
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -50,14 +57,16 @@ function ProfilePanel(props) {
     }
   }, [props.users]);
   return (
-    <div>
-      {currentUserObject && currentUserObject.username ? (
-        <>
-          <p>{currentUserObject.username}</p>
-          <p>{currentUserObject.name}</p>
-          <p>{currentUserObject.location}</p>
-        </>
-      ) : null}
+    <div className="profileContainer">
+      <div className="profileOnDash">
+        {currentUserObject && currentUserObject.username && ifUserLogged() ? (
+          <>
+            <p>{currentUserObject.username}</p>
+            <p>{currentUserObject.name}</p>
+            <p>{currentUserObject.location}</p>
+          </>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
-import { TagsComp, ProfilePanel, Profile } from ".";
+import { TagsComp, ProfilePanel, Profile, NewPost } from ".";
 import { DeletePost, getUsers } from "../api-adapter";
 
 export default function Home(props) {
   const [openedPost, setOpenedPost] = useState({});
 
   const currentUser = localStorage.getItem("currentUser");
-  console.log(currentUser, "CYRRENTUSER");
+  console.log(currentUser, "CURRENTUSER");
 
   function displayPost(post) {
     console.log(post);
@@ -83,10 +83,11 @@ export default function Home(props) {
           alt=""
         />
         <ProfilePanel users={props.users} />
-        <div>{currentUser}</div>
+
+        <NewPost />
 
         <Link to="/profile" className="openedPostMyProfileBtn">
-          MY PROFILE
+          LOGOUT
         </Link>
       </div>
     </div>

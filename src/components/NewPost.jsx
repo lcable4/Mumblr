@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
-import { createPost } from "../api-adapter"
-import { MultilineInput } from 'react-input-multiline';
-
+import { useNavigate } from "react-router-dom";
+import { createPost } from "../api-adapter";
+import { MultilineInput } from "react-input-multiline";
 
 function NewPost() {
   const [newTitle, setNewTitle] = useState();
@@ -25,11 +24,9 @@ function NewPost() {
   return (
     <div className="newPostFormBox">
       <div className="newPostFormFull">
-        <form
-          onSubmit={handleClick}
-        >
+        <form onSubmit={handleClick}>
           <div className="newPostLabelText">
-            <h3>CREATE A NEW LISTING</h3>
+            <h3>NEW POST</h3>
             <label>
               Title:
               <input
@@ -38,7 +35,7 @@ function NewPost() {
                 type="text"
                 value={newTitle}
                 onChange={(event) => {
-                    console.log(event.target.value)
+                  console.log(event.target.value);
                   setNewTitle(event.target.value);
                 }}
               />
@@ -53,7 +50,7 @@ function NewPost() {
                 type="text"
                 value={newDescription}
                 onChange={(event) => {
-                    console.log(event.target.value)
+                  console.log(event.target.value);
 
                   setNewDescription(event.target.value);
                 }}
@@ -62,14 +59,14 @@ function NewPost() {
           </div>
           <div className="newPostLabelText">
             <label>
-              Price:
+              Tags:
               <input
                 className="newPostInput"
                 name="price"
                 type="text"
                 value={newPrice}
                 onChange={(event) => {
-                    console.log(event.target.value)
+                  console.log(event.target.value);
 
                   setNewPrice(event.target.value);
                 }}
@@ -81,8 +78,10 @@ function NewPost() {
               POST
             </button>
           </div>
-          <img className="companyLogoListItemBox" src="/Untitled_Artwork 25.png" />
-
+          <img
+            className="companyLogoListItemBox"
+            src="/Untitled_Artwork 27.png"
+          />
         </form>
       </div>
     </div>

@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
 
-function Login() {
+function Login({loggedIn, setLoggedIn}) {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState("");
   const navigate = useNavigate();
 
