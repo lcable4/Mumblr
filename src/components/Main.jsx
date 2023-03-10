@@ -57,7 +57,7 @@ const Main = () => {
       <div id="main">
         <BrowserRouter>
           <Navbar posts={posts} setPosts={setPosts} />
-          <ProfilePanel users={users} />
+          {/* <ProfilePanel users={users} /> */}
           <Routes>
             <Route
               path="/"
