@@ -24,7 +24,7 @@ body {
   top: 0px;
   z-index: 9999;
 }
-.fullPostBox{
+.fullPostBox {
   border: 1px solid rgb(62, 62, 62);
   border-left: none;
   border-top: none;
@@ -32,14 +32,13 @@ body {
   color: white;
 }
 .postInfo {
-
   padding: 1rem;
   margin: 1rem;
   margin-left: 5em;
   font-family: Arial, Helvetica, sans-serif;
   max-width: 768px;
   min-width: 800px;
-  background-color:rgb(42, 42, 42);
+  background-color: rgb(42, 42, 42);
 
   cursor: pointer;
   top: -50px;
@@ -69,10 +68,10 @@ body {
 
 .navBtns1 {
   padding: 3px;
-background-color: #ea526fff;
+  background-color: #ea526fff;
   border-radius: 3px;
   text-decoration: none;
-  color:  black;
+  color: black;
   position: absolute;
   right: 195px;
   cursor: pointer;
@@ -82,15 +81,15 @@ background-color: #ea526fff;
   background-color: rgb(196, 69, 92);
 }
 .navBtns1:active {
-background-color: #ea526fff;
-transform: translateY(1px);
+  background-color: #ea526fff;
+  transform: translateY(1px);
 }
 .navBtns2 {
   padding: 3px;
-background-color: #ea526fff;
+  background-color: #ea526fff;
   border-radius: 3px;
   text-decoration: none;
-  color:  black;
+  color: black;
   position: absolute;
   right: 100px;
   cursor: pointer;
@@ -100,15 +99,15 @@ background-color: #ea526fff;
   background-color: rgb(196, 69, 92);
 }
 .navBtns2:active {
-background-color: #ea526fff;
-transform: translateY(1px);
+  background-color: #ea526fff;
+  transform: translateY(1px);
 }
 .navBtns3 {
   padding: 3px;
-background-color: #ea526fff;
+  background-color: #ea526fff;
   border-radius: 3px;
   text-decoration: none;
-  color:  black;
+  color: black;
   position: absolute;
   right: 20px;
   top: 24px;
@@ -119,8 +118,8 @@ background-color: #ea526fff;
   background-color: rgb(196, 69, 92);
 }
 .navBtns3:active {
-background-color: #ea526fff;
-transform: translateY(1px);
+  background-color: #ea526fff;
+  transform: translateY(1px);
 }
 .navBtns:hover {
   box-shadow: inset 0px 0px 10px gray;
@@ -222,13 +221,12 @@ transform: translateY(1px);
   flex-direction: column;
 
   align-items: center;
-  border: 0.7px solid rgb(0, 0, 0);
   color: white;
   margin: 1rem;
   height: 800px;
   width: 600px;
   top: 80px;
-  background-color:rgb(42, 42, 42);
+  background-color: rgb(42, 42, 42);
   box-shadow: inset 0px 0px 10px rgb(49, 49, 49);
   position: -webkit-sticky;
   position: sticky;
@@ -236,8 +234,11 @@ transform: translateY(1px);
 .companyLogoPostWindow {
   height: 130px;
   width: 130px;
-
-
+}
+.mapPostsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .openedPostContainer {
   border: 1px solid gray;
@@ -271,36 +272,35 @@ transform: translateY(1px);
   transform: translateY(1px);
 }
 .openedPostMyProfileBtn {
-    position: absolute;
-    top: 540px;
-    left: 320px;
-    border-radius: 5px;
-    color: black;
-    text-decoration: none;
-    text-align: center;
-    font-size: 14px;
-    padding-top: 2px;
-    background-color: rgb(220, 219, 219);
-    border: 0.5px solid black;
-    box-shadow: inset 0px 0px 3px black;
-    width: 130px;
-    height: 18px;
-    cursor: pointer;
-    font-family: a
-rArial, Helvetica, sans-serif;
-    z-index: 9999;
-  }
-  .openedPostMyProfileBtn:hover {
-    background-color: rgb(255, 255, 255);
-    border: 0.5px solid black;
-    box-shadow: inset 0px 0px 3px rgb(13, 175, 229);
-  }
-  .openedPostMyProfileBtn:active {
-    background-color: rgb(13, 175, 229);
-    border: 0.5px solid rgb(13, 175, 229);
-    box-shadow: 0px 2px 0px rgb(86, 86, 86);
-    transform: translateY(1px);
-  }
+  position: absolute;
+  top: 540px;
+  left: 320px;
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  padding-top: 2px;
+  background-color: rgb(220, 219, 219);
+  border: 0.5px solid black;
+  box-shadow: inset 0px 0px 3px black;
+  width: 130px;
+  height: 18px;
+  cursor: pointer;
+  font-family: a rArial, Helvetica, sans-serif;
+  z-index: 9999;
+}
+.openedPostMyProfileBtn:hover {
+  background-color: rgb(255, 255, 255);
+  border: 0.5px solid black;
+  box-shadow: inset 0px 0px 3px rgb(13, 175, 229);
+}
+.openedPostMyProfileBtn:active {
+  background-color: rgb(13, 175, 229);
+  border: 0.5px solid rgb(13, 175, 229);
+  box-shadow: 0px 2px 0px rgb(86, 86, 86);
+  transform: translateY(1px);
+}
 .listItemBtn {
   padding: 3px;
   box-shadow: 0px 0px 10px gray;
@@ -456,79 +456,71 @@ rArial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
 }
-.profileBoxImg{
-    height: 150px;
-    position: relative;
-    top: -40px;
-    left: 250px;
-    
+.profileBoxImg {
+  height: 150px;
+  position: relative;
+  top: -40px;
+  left: 250px;
 }
-.profilePic{
-    position: relative;
-    top: 100px;
-    left: -200px;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 50%;
-    background-color: rgb(217, 0, 255);
+.profilePic {
+  position: relative;
+  top: 100px;
+  left: -200px;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: rgb(217, 0, 255);
 }
-.profileUserName{
-    height: 150px;
-    position: relative;
-    top: 15px;
-    left: -80px;
-    height: 80px;
+.profileUserName {
+  height: 150px;
+  position: relative;
+  top: 15px;
+  left: -80px;
+  height: 80px;
 }
 .profileBoxInfoBox {
-    border: 1px solid black;
-    border-radius: 15px;
-    padding: 1rem;
-    margin: 1rem;
-    font-family: a
-rArial, Helvetica, sans-serif;
-    background-image: linear-gradient(
-
-      rgb(193, 191, 191),
-      rgb(224, 222, 222),
-      rgb(224, 222, 222),
-      rgb(224, 222, 222),
-      rgb(224, 222, 222)
-    );
-    cursor: pointer;
-    position: relative;
-    top: 240px;
-    left: -337px;
-    height: 230px;
-    width: 440px;
-    z-index: 9999;
-  }
-  .profileBio{
-    border-radius: 15px;
-    border: 0.5px solid black;
-    box-shadow: inset 0px 0px 10px black;
-    padding: 1rem;
-    position: relative;
-    left: -180px;
-    width: 400px;
-  }
-  .Input{
-    font-family: a
-rArial, Helvetica, sans-serif;
-
-  }
-  .searchButton{
-    font-family: a
-rArial, Helvetica, sans-serif;
-    width: 60px;
-  }
-  .profileOnDash{
-    text-align: center;
-    border: 1px solid rgb(73, 73, 73);
-    border-radius: 10px;
-    width: 400px;
-  }
-
-
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 1rem;
+  margin: 1rem;
+  font-family: a rArial, Helvetica, sans-serif;
+  background-image: linear-gradient(
+    rgb(193, 191, 191),
+    rgb(224, 222, 222),
+    rgb(224, 222, 222),
+    rgb(224, 222, 222),
+    rgb(224, 222, 222)
+  );
+  cursor: pointer;
+  position: relative;
+  top: 240px;
+  left: -337px;
+  height: 230px;
+  width: 440px;
+  z-index: 9999;
+}
+.profileBio {
+  border-radius: 15px;
+  border: 0.5px solid black;
+  box-shadow: inset 0px 0px 10px black;
+  padding: 1rem;
+  position: relative;
+  left: -180px;
+  width: 400px;
+}
+.Input {
+  font-family: a rArial, Helvetica, sans-serif;
+}
+.searchButton {
+  font-family: a rArial, Helvetica, sans-serif;
+  width: 60px;
+}
+.profileOnDash {
+  text-align: center;
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 10px;
+  width: 400px;
+}
 
 @media screen and (max-width: 1460px) {
   .openedPostWindow {

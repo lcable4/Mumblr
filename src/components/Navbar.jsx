@@ -25,9 +25,11 @@ const Navbar = (props) => {
   return (
     <div id="navbar">
       <img className="companyLogo" src="/Untitled_Artwork 27.png" alt="" />
-      <Link to="/newpost" className="listItemBtn">
-        LIST AN ITEM
-      </Link>
+      <div className="newPostDiv">
+        <Link to="/newpost" className="listItemBtn">
+          Write a new post
+        </Link>
+      </div>
 
       <SearchBar posts={props.posts} setPosts={props.setPosts} />
       {/* <div>{<SearchBar />}</div> */}
@@ -35,6 +37,7 @@ const Navbar = (props) => {
       <Link to="/" className="navBtns1">
         HOME
       </Link>
+
       <Link to="/profile" className="navBtns2">
         PROFILE
       </Link>

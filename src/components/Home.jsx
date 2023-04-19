@@ -65,25 +65,29 @@ export default function Home(props) {
     );
   });
   return (
-    <div
-      className="openedPostContainer"
-      key={`user map and user ${currentUser.id}`}
-    >
-      <div>{mapPosts}</div>
-      <div className="openedPostWindow">
-        <img
-          className="companyLogoPostWindow"
-          src="/Untitled_Artwork 27.png"
-          alt=""
-        />
-        <ProfilePanel users={props.users} />
+    <>
+      <div className="newPostDiv"></div>
+      <div
+        className="openedPostContainer"
+        key={`user map and user ${currentUser.id}`}
+      >
+        <div className="mapPostsContainer">{mapPosts}</div>
+        <div className="openedPostWindow">
+          <img
+            className="companyLogoPostWindow"
+            src="/Untitled_Artwork 27.png"
+            alt=""
+          />
+          <ProfilePanel users={props.users} />
 
-        <NewPost />
-
-        <Link to="/profile" className="openedPostMyProfileBtn">
-          LOGOUT
-        </Link>
+          <NewPost />
+          <div className="profileBtnDiv">
+            <Link to="/profile" className="openedPostProfileLink">
+              <button>View Profile</button>
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

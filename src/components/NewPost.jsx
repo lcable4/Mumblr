@@ -78,10 +78,6 @@ function NewPost() {
               POST
             </button>
           </div>
-          <img
-            className="companyLogoListItemBox"
-            src="/Untitled_Artwork 27.png"
-          />
         </form>
       </div>
     </div>
