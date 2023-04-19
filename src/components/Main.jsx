@@ -20,6 +20,11 @@ const Main = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  console.log(posts, "POSTS LOG");
+  console.log(users, "USERS LOG");
+  console.log(tags, "TAGS log");
 
   async function fetchAllPosts() {
     try {
@@ -48,10 +53,19 @@ const Main = () => {
     }
   }
   useEffect(() => {
-    fetchAllPosts();
-    fetchAllTags();
-    fetchAllUsers();
+    async function fetchData() {
+      await fetchAllPosts();
+      await fetchAllTags();
+      await fetchAllUsers();
+      setLoading(false);
+    }
+    fetchData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   console.log(posts, users);
   return (
     <>

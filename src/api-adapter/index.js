@@ -1,4 +1,5 @@
-const BASE_URL = "https://juicebox-n89w.onrender.com/api";
+// const BASE_URL = "https://juicebox-n89w.onrender.com/api";
+const BASE_URL = "http://localhost:3000/api";
 
 export const getPosts = async () => {
   try {
@@ -6,7 +7,7 @@ export const getPosts = async () => {
       method: "GET",
     });
     const result = await response.json();
-
+    console.log(result, "POST RESULT");
     return result.posts;
   } catch (error) {
     console.log(error);

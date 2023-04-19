@@ -9,6 +9,7 @@ export default function Home(props) {
 
   const currentUser = localStorage.getItem("currentUser");
   console.log(currentUser, "CURRENTUSER");
+  console.log(props, "PROPS LOG");
 
   function displayPost(post) {
     console.log(post);
@@ -26,9 +27,6 @@ export default function Home(props) {
       console.log(result.error);
     }
   };
-
-  // const filteredUsers = props.users.filter((u) => (u.username = currentUser));
-  // console.log(filteredUsers);
 
   const mapPosts = props.posts.map((post) => {
     return (
@@ -66,10 +64,6 @@ export default function Home(props) {
       </div>
     );
   });
-  // Deleted CSS classnames, openedPostContainer, openedPostWindow
-  // companyLogoPostWindow, openedPostTextBox
-  // const mapUsers = filteredUsers.map((user) => {
-  // if (user.username === currentUser) {
   return (
     <div
       className="openedPostContainer"
@@ -92,8 +86,4 @@ export default function Home(props) {
       </div>
     </div>
   );
-  // } else {
-  //   return null;
-  // }
-  // })
 }
