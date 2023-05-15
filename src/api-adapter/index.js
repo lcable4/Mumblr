@@ -1,5 +1,5 @@
-// const BASE_URL = "https://juicebox-n89w.onrender.com/api";
-const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = "https://mumblr.onrender.com/api";
+//const BASE_URL = "http://localhost:3000/api";
 
 export const getPosts = async () => {
   try {
