@@ -69,24 +69,25 @@ export default function Home(props) {
       <div className="newPostDiv"></div>
       <div
         className="openedPostContainer"
-        key={`user map and user ${currentUser.id}`}
+        key={`user map and user ${currentUser?.id}`}
       >
         <div className="mapPostsContainer">{mapPosts}</div>
-        <div className="openedPostWindow">
-          <img
-            className="companyLogoPostWindow"
-            src="/Untitled_Artwork 27.png"
-            alt=""
-          />
-          <ProfilePanel users={props.users} />
-
-          <NewPost />
-          <div className="profileBtnDiv">
-            <Link to="/profile" className="openedPostProfileLink">
-              <button>View Profile</button>
-            </Link>
+        {currentUser ? (
+          <div className="openedPostWindow">
+            <img
+              className="companyLogoPostWindow"
+              src="/Untitled_Artwork 27.png"
+              alt=""
+            />
+            <ProfilePanel users={props.users} />
+            <NewPost />
+            <div className="profileBtnDiv">
+              <Link to="/profile" className="openedPostProfileLink">
+                <button>View Profile</button>
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </>
   );
