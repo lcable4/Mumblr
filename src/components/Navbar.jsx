@@ -1,85 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { Link, Outlet, Route, Router } from "react-router-dom";
-import { SearchBar } from "./";
+import { Link } from "react-router-dom";
+
+import AccountMenu from "./AccountMenu";
 
 const Navbar = (props) => {
-  const loggedIn = props.loggedIn;
-  function onLogoutClick() {
-    console.log("been clicked");
-    localStorage.removeItem("token");
-    window.location.reload(false);
-  }
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
 
-  function ifUserLogged() {
-    if (localStorage.getItem("token")) {
-      return true;
+  useEffect(() => {
+    // Check the localStorage value for "loggedIn" on component initialization
+    const isLoggedIn = localStorage.getItem("loggedIn");
+    if (isLoggedIn) {
+      setLoggedIn(true);
     }
-    return false;
-  }
-  // useEffect(() => {
-  //   const logged = ifUserLogged();
-  //   setLoggedValue(logged);
-  // }, []);
+  }, []);
 
-  // console.log(ifUserLogged());
+  const handleLogoutClick = () => {
+    // Clear localStorage or perform any other logout actions
+    localStorage.clear(); // Clearing localStorage in this example
+
+    // Update the logged-in state
+    setLoggedIn(false);
+
+    // Optional: Redirect to the login page or perform any other necessary actions
+  };
+
+  const handleAccountMenuToggle = () => {
+    setShowAccountMenu((prev) => !prev);
+  };
+
   return (
     <div id="navbar">
-      <img className="companyLogo" src="/Untitled_Artwork 27.png" alt="" />
+      <div className="navIcon">
+        <a href="/">
+          <img className="companyLogo" src="/Untitled_Artwork 27.png" alt="" />
+        </a>
+      </div>
+
       <div className="newPostDiv">
         <Link to="/newpost" className="listItemBtn">
           Write a new post
         </Link>
       </div>
+      <div className="navMenu">
+        {loggedIn ? (
+          <div className="navBtns3">
+            <button onClick={handleAccountMenuToggle}>Account</button>
 
-      <SearchBar posts={props.posts} setPosts={props.setPosts} />
-      {/* <div>{<SearchBar />}</div> */}
-
-      <Link to="/" className="navBtns1">
-        HOME
-      </Link>
-
-      <Link to="/profile" className="navBtns2">
-        PROFILE
-      </Link>
-      {loggedIn ? (
-        <button className="navBtns3" onClick={onLogoutClick}>
-          Logout
-        </button>
-      ) : (
-        <div>
-          <Link className="navBtns3" to="/login">
-            Login
-          </Link>
-        </div>
-      )}
+            {showAccountMenu && (
+              <AccountMenu handleLogoutClick={handleLogoutClick} />
+            )}
+          </div>
+        ) : (
+          <div>
+            <Link className="navBtns3" to="/login">
+              Login
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default Navbar;
-
-// return (
-//   <div id="navbar">
-//     {ifUserLogged() ? (
-//       <>
-//         <div className="navLinksDiv">
-//           <Link to="/User" className="navLinks">
-//             <button className="btns">Profile</button>
-//           </Link>
-//         </div>
-//         <p>Logged in as: {localStorage.getItem("username")}</p>
-//       </>
-//     ) : null}
-//     {ifUserLogged() ? (
-//       <button className="navBtns3" onClick={onLogoutClick}>
-//         Logout
-//       </button>
-//     ) : (
-//       <div>
-//         <Link className="navLinks" to="/login">
-//           <button className="navBtns3">Login</button>
-//         </Link>
-//       </div>
-//     )}
-//   </div>
-// );

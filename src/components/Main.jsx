@@ -77,7 +77,12 @@ const Main = () => {
             <Route
               path="/"
               element={
-                <Home posts={posts} users={users} currentUser={currentUser} />
+                <Home
+                  posts={posts}
+                  setPosts={setPosts}
+                  users={users}
+                  currentUser={currentUser}
+                />
               }
             />
             <Route

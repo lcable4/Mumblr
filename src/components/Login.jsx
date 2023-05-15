@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
 
-function Login({loggedIn, setLoggedIn}) {
+function Login({ loggedIn, setLoggedIn }) {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
@@ -20,9 +20,11 @@ function Login({loggedIn, setLoggedIn}) {
     console.log(result);
     if (result && result.token) {
       localStorage.setItem("token", result.token);
+      localStorage.setItem("loggedIn", true);
       setLoggedIn(true);
       setCurrentUser(userName);
       navigate("/");
+      window.location.reload();
     } else {
       console.log(result.error);
     }

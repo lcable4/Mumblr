@@ -3,6 +3,7 @@ import { ReactDOM } from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import { TagsComp, ProfilePanel, Profile, NewPost } from ".";
 import { DeletePost, getUsers } from "../api-adapter";
+import { SearchBar } from "./";
 
 export default function Home(props) {
   const [openedPost, setOpenedPost] = useState({});
@@ -66,7 +67,10 @@ export default function Home(props) {
   });
   return (
     <>
-      <div className="newPostDiv"></div>
+      <div className="navSearch">
+        <SearchBar posts={props.posts} setPosts={props.setPosts} />
+      </div>
+
       <div
         className="openedPostContainer"
         key={`user map and user ${currentUser?.id}`}
