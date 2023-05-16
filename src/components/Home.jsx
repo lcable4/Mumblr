@@ -39,7 +39,7 @@ export default function Home(props) {
           }}
           key={`${post._id}`}
         >
-          <div>
+          <div className="postDetails">
             <p>@{post.author.username}</p>
             <h2>{post.title}</h2>
             <p>{post.content}</p>

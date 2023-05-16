@@ -19,8 +19,10 @@ function Profile() {
   return (
     <div className="profileBoxFull">
       <div className="profileBox">
-        <img className="profileBoxImg" src="/Untitled_Artwork 25.png" />
-        <div>
+        <div className="profileLogo">
+          <img className="profileBoxImg" src="/Untitled_Artwork 25.png" />
+        </div>
+        <div className="profileInfo">
           <img className="profilePic" src="/Untitled_Artwork 26.png" />
           <h3 className="profileUserName">@username</h3>
           <p className="profileBio">
